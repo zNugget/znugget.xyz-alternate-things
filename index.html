@@ -1,171 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<a href="http://znugget.xyz/">
-    <input type="button" value="Home" />
-</a>
+<!DOCTYPE html>
+<html>
 <head>
-
+<meta name="description" content="Access the world wide web">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" href="" id="favicon">
+<script src="./script/particles.js"></script>
+<script async>
+            // Incognito analytics
+            // Only tracks user visits!
+            // Remove when needed.
+            navigator.sendBeacon('./data/visit');
+            (async() => {
+                const res = await fetch('./data/create-id');
+                const id = await res.text();
     
-        <title>Unblocked Games</title>
-        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-        <audio id="music" src="msc.mp3" autoplay loop onplaying="" style="display: none;"></audio>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="animate.css">
+                setInterval(() => {
+                    navigator.sendBeacon('./data/keep-alive', id);
+                }, 15000)
+    
+                window.addEventListener('beforeunload', () => {
+                    navigator.sendBeacon('./data/destroy', id);
+                });
+    
+            })();
+        </script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2092505869261696" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <div id="main" class="center">
-        <div id="overlay" onclick="music.play(); addStuff();"><span class="header center" id="status_text"></span></div>
-    </div>
-    <script>
-        function handleAnimations() {
-            let animations = [
-                ["bounce", "bounce"],
-                ["flash", "flash"],
-                ["pulse", "pulse"],
-                ["shake", "shake"],
-                ["headShake", "headShake"],
-                ["swing", "swing"],
-                ["tada", "tada"],
-                ["wobble", "wobble"],
-                ["jello", "jello"],
-                ["heartBeat", "heartBeat"],
-                ["bounceIn", "bounceIn"],
-                ["bounceInDown", "bounceInUp"],
-                ["bounceInLeft", "bounceInRight"],
-                ["fadeIn", "fadeIn"],
-                ["fadeInDown", "fadeInUp"],
-                ["fadeInLeft", "fadeInRight"],
-                ["flip", "flip"],
-                ["flipInX", "flipInX"],
-                ["flipInY", "flipInY"],
-                ["rotateIn", "rotateIn"],
-                ["rotateInDownLeft", "rotateInDownRight"],
-                ["slideInDown", "slideInUp"],
-                ["slideInLeft", "slideInRight"],
-                ["zoomIn", "zoomIn"],
-                ["zoomInDown", "zoomInUp"],
-                ["zoomInLeft", "zoomInRight"],
-                ["jackInTheBox", "jackInTheBox"],
-            ];
+<script>
+            document.body.setAttribute('data-appearance', (localStorage.getItem('incog||appearance')))
+        </script>
+<header data-init>
+<div class="search"></div>
+<nav></nav>
+<a id="open-nav"><i style="color: var(--accent)" class="fas fa-sliders-h secondary"></i></a>
+<a id="close-nav">close</a>
+</header>
+<main></main>
+<div style="display: none" class="access-panel">
+<div class="controls">
+<img class="icon" src="img/globe.svg">
+<input disabled="disabled" value="">
+<button class="interact access-link" style="margin-right: 5px">attachment</button>
+<button class="interact refresh-access" style="margin-right: 5px">refresh</button>
+<button class="interact close-access">close</button>
+</div>
 
-            var num = getRandomInt(animations.length);
-
-            animateCSS('[name="top"]', animations[num][0], animationOver);
-            animateCSS('[name="bottom"]', animations[num][1], animationOver);
-            console.log("top: " + animations[num][0]);
-            console.log("bottom: " + animations[num][1]);
-        }
-
-        function addStuff() {
-            at("main").innerHTML =
-                `<h1 name="top"    id = "status_text" class="header animated"><a href="">Welcome to the home of unblocked games.</a></h1>
-            <p  name="bottom" id = "text2" class="textiboi animated">Premium unblocked games.</p>`;
-
-            handleAnimations();
-        }
-
-        function animateCSS(element, animationName, callback) {
-            const node = document.querySelector(element)
-            node.classList.add('animated', animationName)
-            node.classList.add('delay-2s')
-
-            function handleAnimationEnd() {
-                node.classList.remove('animated', animationName)
-                node.removeEventListener('animationend', handleAnimationEnd)
-
-                if (typeof callback === 'function') callback()
-            }
-
-            node.addEventListener('animationend', handleAnimationEnd)
-        }
-
-        function getRandomInt(max) {
-            return Math.floor(Math.random() * Math.floor(max));
-        }
-        var at = document.getElementById.bind(document);
-        window.addEventListener("DOMContentLoaded", () => {
-            at("status_text").innerHTML = "loading";
-
-        });
-
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                if (!window.music.paused) {
-                    addStuff();
-                    console.log("music already started");
-                    return;
-                }
-                at("status_text").innerHTML = "click to enter";
-                at("status_text").classList.add("begin");
-
-            }, 100);
-        });
-
-        var temp = 0
-
-        function animationOver() {
-            temp++;
-
-            if (temp != 2)
-                return;
-
-            setTimeout(function() {
-                console.log("animations over");
-                var doc = document.getElementById("main");
-                var inner = doc.innerHTML;
-                // WOW this is aids.
-
-                doc.innerHTML +=
-                    `<div class="textiboi">
-                <a id="typElement"></a></div>
-                <div class="textiboi">
-				<a class="textiboi animated fadeIn"  href="https://znugget.github.io/znugget.xyz-alternate-things/games.html">Game list</a>
-				<a class="textiboi animated fadeIn"  href="https://znugget.github.io/znugget.xyz-alternate-things/help.html">Help</a>
-                <a class="textiboi animated fadeIn"  href="https://znugget.github.io/znugget.xyz-alternate-things/credits.html">Credits</a>`;
-                console.log("running typewrite");
-                indefiniteWrite();
-
-            }, 550);
-
-        }
-
-        function indefiniteWrite() {
-            let strs = [
-                "Unblocking games since 2020.",
-                "Bypassing GoGuardian since 2021.",
-                "Stop getting blocked by GoGuardian.",
-                "Play games without interference.",
-                "Don't worry about getting flagged.",
-                "Unblocking games since 2020.",
-                "Bypassing GoGuardian since 2021.",
-                "Stop getting blocked by GoGuardian.",
-                "Play games without interference.",
-                "Don't worry about getting flagged.",
-                "Unblocking games since 2020.",
-                "Bypassing GoGuardian since 2021.",
-                "Stop getting blocked by GoGuardian.",
-                "Play games without interference.",
-                "Don't worry about getting flagged."
-            ];
-
-            var num = getRandomInt(strs.length);
-
-            console.log("writing " + strs[num]);
-
-            var typElement = document.getElementById('typElement');
-
-            var typewriter = new Typewriter(typElement, {
-                loop: true
-            });
-
-            typewriter.typeString(strs[num]).pauseFor(5000).deleteAll().pauseFor(100).callFunction(() => {
-                typewriter.stop();
-                indefiniteWrite();
-            }).start();
-        }
-    </script>
+</div>
+<iframe src="about:blank" class="access-frame" style="position: absolute; overflow-x: hidden; width: 100%; height: 100%; display: none; border: none; background: #FFF;"></iframe>
+<form id="access-form"></form>
+<div class="particles"></div>
+<script src="uv/uv.bundle.js"></script>
+<script src="uv/uv.config.js"></script>
+<script src="script/index.js" type="module"></script>
 </body>
-
 </html>
